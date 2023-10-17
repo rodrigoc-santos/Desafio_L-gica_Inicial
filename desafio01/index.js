@@ -46,14 +46,15 @@ function fazerPergunta(vezes) {
       rl.question('Digite o XP do Herói : ', (nivelXp) => {
         xpDoHeroi[vezes] = nivelXp;      
         
-        fazerPergunta(vezes + 1); // Chama a função novamente para a próxima iteração
+        fazerPergunta(vezes + 1); 
         
       });
     });
   } 
   else {
-    
+    // Classificando os heróis
     console.log("---------------------------------------")
+    console.log()
     for (let i = 0; i < 3; i++) {
       if (xpDoHeroi[i] < 1000) {
         console.log("O Herói de nome " + nomeDoHeroi[i] + " está no nível de FERRO")
@@ -75,8 +76,12 @@ function fazerPergunta(vezes) {
     }
 
     // Organizando os arrays em ordem decrescente
+    for (let i = 0; i < 3; i++) {
+      xpDoHeroi[i] = parseInt(xpDoHeroi[i]);
+    }
+
     for (let i = 0; i < 2; i++) {
-      for (let j = 0; j < 3 - i; j++) {
+      for (let j = 0; j < 2 - i; j++) {
         if (xpDoHeroi[j] < xpDoHeroi[j + 1]) {
           let tempXP = xpDoHeroi[j];
           xpDoHeroi[j] = xpDoHeroi[j + 1];
@@ -87,9 +92,7 @@ function fazerPergunta(vezes) {
         }
       }
     }
-    
-    console.log(xpDoHeroi)
-    console.log(nomeDoHeroi)
+    // Exibindo o ranking
     console.log()
     console.log("---------------------------------------")
     console.log("          RANKING DOS HERÓIS           ")
@@ -98,8 +101,8 @@ function fazerPergunta(vezes) {
     for (let i = 0; i < 3; i++) {
       console.log((i + 1) + "º Lugar: " + nomeDoHeroi[i] + " com " + xpDoHeroi[i] + " de XP!")
     }
-    rl.close(); // Fecha a interface readline 
+    rl.close();
   }
 }
 
-fazerPergunta(0); // Inicia o processo de perguntas 3 vezes
+fazerPergunta(0);
